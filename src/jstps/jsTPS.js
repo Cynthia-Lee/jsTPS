@@ -16,7 +16,7 @@
 class jsTPS {
     // THE TRANSACTION STACK
     // private ArrayList<jsTPS_Transaction> transactions = new ArrayList();
-    
+
     // KEEPS TRACK OF WHERE WE ARE IN THE STACK, THUS AFFECTING WHAT
     // TRANSACTION MAY BE DONE OR UNDONE AT ANY GIVEN TIME
     // private int mostRecentTransaction = -1;
@@ -44,7 +44,7 @@ class jsTPS {
     isPerformingDo() {
         return this.performingDo;
     }
-    
+
     /**
      * Tests to see if the undo operation is currently being
      * performed. If it is, true is returned, if not, false.
@@ -55,7 +55,7 @@ class jsTPS {
     isPerformingUndo() {
         return this.performingUndo;
     }
-    
+
     /**
      * This function adds the transaction argument to the top of
      * the transaction processing system stack and then executes it. Note that it does
@@ -69,9 +69,9 @@ class jsTPS {
     addTransaction(transaction) {
         // ARE THERE OLD UNDONE TRANSACTIONS ON THE STACK THAT FIRST
         // NEED TO BE CLEARED OUT, i.e. ARE WE BRANCHING?
-        if ((this.mostRecentTransaction < 0)|| (this.mostRecentTransaction < (this.transactions.length-1))) {
+        if ((this.mostRecentTransaction < 0) || (this.mostRecentTransaction < (this.transactions.length - 1))) {
             var i;
-            for (i = this.transactions.length-1; i > this.mostRecentTransaction; i--) {
+            for (i = this.transactions.length - 1; i > this.mostRecentTransaction; i--) {
                 this.transactions.splice(i, 1);
             }
         }
@@ -84,7 +84,7 @@ class jsTPS {
         // will push transaction to the end of the array
 
         // AND EXECUTE IT
-        this.doTransaction();        
+        this.doTransaction();
     }
 
     /**
@@ -95,13 +95,13 @@ class jsTPS {
     doTransaction() {
         if (this.hasTransactionToRedo()) {
             this.performingDo = true;
-            var transaction = this.transactions[this.mostRecentTransaction+1];
+            var transaction = this.transactions[this.mostRecentTransaction + 1];
             transaction.doTransaction();
             this.mostRecentTransaction++;
             this.performingDo = false;
         }
     }
-    
+
     /**
      * This function checks to see if there is a transaction to undo. If there
      * is it will return it, if not, it will return null.
@@ -116,17 +116,17 @@ class jsTPS {
         else
             return null;
     }
-    
+
     /**
      * This function checks to see if there is a transaction to redo. If there
      * is it will return it, if not, it will return null.
      * 
      * @return The transaction that would be executed if redo is performed, if
      * there is no transaction to undo, null is returned.
-     */    
+     */
     peekDo() {
         if (this.hasTransactionToRedo()) {
-            return this.transactions[this.mostRecentTransaction+1];
+            return this.transactions[this.mostRecentTransaction + 1];
         }
         else
             return null;
@@ -154,12 +154,12 @@ class jsTPS {
     clearAllTransactions() {
         // REMOVE ALL THE TRANSACTIONS
         this.transactions = [];
-        
+
         // MAKE SURE TO RESET THE LOCATION OF THE
         // TOP OF THE TPS STACK TOO
-        this.mostRecentTransaction = -1;        
+        this.mostRecentTransaction = -1;
     }
-    
+
     /**
      * Accessor method that returns the number of transactions currently
      * on the transaction stack. This includes those that may have been
@@ -170,7 +170,7 @@ class jsTPS {
     getSize() {
         return this.transactions.length;
     }
-    
+
     /**
      * This method returns the number of transactions currently in the
      * transaction stack that can be redone, meaning they have been added
@@ -192,7 +192,7 @@ class jsTPS {
     getUndoSize() {
         return this.mostRecentTransaction + 1;
     }
-    
+
     /**
      * This method tests to see if there is a transaction on the stack that
      * can be undone at the time this function is called.
@@ -202,7 +202,7 @@ class jsTPS {
     hasTransactionToUndo() {
         return this.mostRecentTransaction >= 0;
     }
-    
+
     /**
      * This method tests to see if there is a transaction on the stack that
      * can be redone at the time this function is called.
@@ -210,9 +210,9 @@ class jsTPS {
      * @return true if a redo operation is possible, false otherwise.
      */
     hasTransactionToRedo() {
-        return this.mostRecentTransaction < (this.transactions.length-1);
+        return this.mostRecentTransaction < (this.transactions.length - 1);
     }
-        
+
     /**
      * This method builds and returns a textual summary of the current
      * Transaction Processing System, this includes the toString of

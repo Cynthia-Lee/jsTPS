@@ -15,7 +15,7 @@
 class AddToNum_Transaction extends jsTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
     // private Num num;
-    
+
     // AMOUNT TO ADD/REMOVE FOR NUM
     // private int amountToAdd;
 

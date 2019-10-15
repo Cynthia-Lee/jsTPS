@@ -1,11 +1,11 @@
 // package junit_test_beds;
 
 // import demo.AddToNum_Transaction;
-    // import AddToNum_Transaction from '../AddToNum_Transaction';
+// import AddToNum_Transaction from '../AddToNum_Transaction';
 // import demo.AndMask_Transaction;
-    // import AndMask_Transaction from '../AndMask_Transaction';
+// import AndMask_Transaction from '../AndMask_Transaction';
 // import demo.Num;
-    // import Num from '../Num';
+// import Num from '../Num';
 // import jtps.jTPS;
 // import org.junit.Assert;
 // import org.junit.Test;
@@ -50,17 +50,17 @@ class jsTPS_Unit_Tests {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
         let num = new Num();
-        
+
         var t0 = document.createTextNode(
             this.stringAssertEquals(0, num.num, "Num")
-            );
+        );
         test0.appendChild(t0);
         // this.assertEquals(0, num.num); // Assert.assertEquals(0, num.getNum());
         // ---
 
         let test1 = document.createElement("p");
         tps.addTransaction(new AddToNum_Transaction(num, 5));
-        var t1 = 
+        var t1 =
             "<strong>Add 5 Transaction</strong><br>" +
             this.stringAssertEquals(5, num.num, "Num") + "<br>" +
             this.stringAssertEquals(1, tps.getSize(), "Stack size") + "<br>" +
@@ -77,54 +77,54 @@ class jsTPS_Unit_Tests {
         this.assertEquals(0, tps.getRedoSize());
         this.assertEquals(1, tps.getUndoSize());
         */
-    
+
         let test2 = document.createElement("p");
         tps.addTransaction(new AddToNum_Transaction(num, 10));
-        var t2 = 
+        var t2 =
             "<strong>Add 10 Transaction</strong><br>" +
             this.stringAssertEquals(15, num.num, "Num") + "<br>" +
             this.stringAssertEquals(2, tps.getSize(), "Stack size") + "<br>" +
             this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
             this.stringAssertEquals(2, tps.getUndoSize(), "Undo size")
             ;
-       test2.innerHTML = t2;
-       testDiv.appendChild(test2);
-       /*
-       // ADD 10 TRANSACTION
-       tps.addTransaction(new AddToNum_Transaction(num, 10));
-       Assert.assertEquals(15, num.getNum());
-       Assert.assertEquals(2, tps.getSize());
-       Assert.assertEquals(0, tps.getRedoSize());
-       Assert.assertEquals(2, tps.getUndoSize());
-       */
+        test2.innerHTML = t2;
+        testDiv.appendChild(test2);
+        /*
+        // ADD 10 TRANSACTION
+        tps.addTransaction(new AddToNum_Transaction(num, 10));
+        Assert.assertEquals(15, num.getNum());
+        Assert.assertEquals(2, tps.getSize());
+        Assert.assertEquals(0, tps.getRedoSize());
+        Assert.assertEquals(2, tps.getUndoSize());
+        */
 
-       let test3 = document.createElement("p");
-       tps.addTransaction(new AddToNum_Transaction(num, 20));
-       var t3 = 
+        let test3 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 20));
+        var t3 =
             "<strong>Add 10 Transaction</strong><br>" +
             this.stringAssertEquals(35, num.num, "Num") + "<br>" +
             this.stringAssertEquals(3, tps.getSize(), "Stack size") + "<br>" +
             this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
             this.stringAssertEquals(3, tps.getUndoSize(), "Undo size")
             ;
-       test3.innerHTML = t3;
-       testDiv.appendChild(test3);
-       /*
-       // ADD 15 TRANSACTION
-       tps.addTransaction(new AddToNum_Transaction(num, 20));
-       Assert.assertEquals(35, num.getNum());
-       Assert.assertEquals(3, tps.getSize());
-       Assert.assertEquals(0, tps.getRedoSize());
-       Assert.assertEquals(3, tps.getUndoSize());
-       */
+        test3.innerHTML = t3;
+        testDiv.appendChild(test3);
+        /*
+        // ADD 15 TRANSACTION
+        tps.addTransaction(new AddToNum_Transaction(num, 20));
+        Assert.assertEquals(35, num.getNum());
+        Assert.assertEquals(3, tps.getSize());
+        Assert.assertEquals(0, tps.getRedoSize());
+        Assert.assertEquals(3, tps.getUndoSize());
+        */
     }
-    
+
     /**
      * 
      */
     // @Test
     testAndMask() {
-        
+
         /*
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
@@ -137,7 +137,7 @@ class jsTPS_Unit_Tests {
         tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
         Assert.assertEquals(4, num.getNum());
         Assert.assertEquals(2, tps.getSize());
-        
+
         tps.undoTransaction();
         Assert.assertEquals(12, num.getNum());
         Assert.assertEquals(2, tps.getSize());
@@ -145,9 +145,9 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(1, tps.getUndoSize());
 
     }
-    
+
     testOrMask() {
-        
+
     }
 
     /**
@@ -161,7 +161,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(num.getNum(), 0);
         Assert.assertFalse(tps.hasTransactionToUndo());
         Assert.assertFalse(tps.hasTransactionToRedo());
-        
+
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -173,7 +173,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-        
+
         // UNDO A TRANSACTION
         tps.undoTransaction();
         Assert.assertTrue(tps.hasTransactionToUndo());
@@ -182,7 +182,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(1, tps.getRedoSize());
         Assert.assertEquals(2, tps.getUndoSize());
-        
+
         // UNDO ANOTHER
         tps.undoTransaction();
         Assert.assertTrue(tps.hasTransactionToUndo());
@@ -191,7 +191,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(2, tps.getRedoSize());
         Assert.assertEquals(1, tps.getUndoSize());
-        
+
         // AND ANOTHER
         tps.undoTransaction();
         Assert.assertFalse(tps.hasTransactionToUndo());
@@ -200,7 +200,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(3, tps.getRedoSize());
         Assert.assertEquals(0, tps.getUndoSize());
-        
+
         // WE HAVE NO MORE TO UNDO SO THIS SHOULD DO NOTHING
         tps.undoTransaction();
         Assert.assertFalse(tps.hasTransactionToUndo());
@@ -210,7 +210,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getRedoSize());
         Assert.assertEquals(0, tps.getUndoSize());
     }
-    
+
     /**
      * This JUnit test is for testing the redoing of transactions.
      */
@@ -220,7 +220,7 @@ class jsTPS_Unit_Tests {
         let tps = new jsTPS();
         let num = new Num();
         Assert.assertEquals(num.getNum(), 0);
-        
+
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -231,7 +231,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-        
+
         // UNDO A TRANSACTION AND THEN REDO IT
         tps.undoTransaction();
         tps.doTransaction();
@@ -241,7 +241,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-        
+
         // UNDO TWO TRANSACTIONS AND THEN REDO THEM
         tps.undoTransaction();
         tps.undoTransaction();
@@ -253,7 +253,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-        
+
         // UNDO ALL THREE TRANSACTIONS AND REDO THEM
         tps.undoTransaction();
         tps.undoTransaction();
@@ -267,7 +267,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-        
+
         // UNDO THREE TRANSACTIONS AND REDO TWO
         tps.undoTransaction();
         tps.undoTransaction();
@@ -280,7 +280,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(1, tps.getRedoSize());
         Assert.assertEquals(2, tps.getUndoSize());
-        
+
         // UNDO ALL THREE TRANSACTIONS AND REDO FOUR, WHICH
         // SHOULD NOT PRODUCE AN ERROR BUT THE LAST
         // REDO SHOULD DO NOTHING
@@ -297,7 +297,7 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-    }    
+    }
 
     /**
      * This JUnit test is for testing clearing of transactions.
@@ -308,7 +308,7 @@ class jsTPS_Unit_Tests {
         let tps = new jsTPS();
         let num = new Num();
         Assert.assertEquals(num.getNum(), 0);
-        
+
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -317,14 +317,14 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-                
+
         // CLEAR ALL THE TRANSACTIONS
         tps.clearAllTransactions();
         Assert.assertEquals(35, num.getNum());
         Assert.assertEquals(0, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(0, tps.getUndoSize());
-        
+
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -333,14 +333,14 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
-                
+
         // CLEAR THEM ALL OUT AGAIN
         tps.clearAllTransactions();
         Assert.assertEquals(70, num.getNum());
         Assert.assertEquals(0, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(0, tps.getUndoSize());
-        
+
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));

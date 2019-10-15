@@ -9,9 +9,9 @@
 class AndMask_Transaction extends jsTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
     // private Num num;
-    
+
     // private int intNum;
-    
+
     // AMOUNT TO MASK FOR NUM
     // private int mask;
 

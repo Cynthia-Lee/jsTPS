@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head> 
-      <title>jsTPS Tests</title>
-      <!--
+
+<head>
+  <title>jsTPS Tests</title>
+  <!--
       <link href="./css/fonts/Lexend Exa/css.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="./css/todo_layout.css" />
       <link rel="stylesheet" type="text/css" href="./css/todo_style.css" />
       -->
-      
-      <script src="./src/jstps/jsTPS.js"></script>
-      <script src="./src/jstps/jsTPS_Transaction.js"></script>
 
-      <script src="./test/AddToNum_Transaction.js"></script>
-      <script src="./test/AndMask_Transaction.js"></script>
-      <script src="./test/Num.js"></script>
+  <script src="./src/jstps/jsTPS.js"></script>
+  <script src="./src/jstps/jsTPS_Transaction.js"></script>
 
-      <script src="./test/junit_test_beds/jsTPS_Unit_Tests.js"></script>
-      
-      <!-- FOR TESTING OUR TODO LISTS -->
-      <script src="./test/jsTPS_Tester.js"></script>
+  <script src="./test/AddToNum_Transaction.js"></script>
+  <script src="./test/AndMask_Transaction.js"></script>
+  <script src="./test/Num.js"></script>
 
-    <script>
-        window.onload = function () {
-            window.jstps = new jsTPS();
-            window.jstpsUnitTests = new jsTPS_Unit_Tests();
+  <script src="./test/junit_test_beds/jsTPS_Unit_Tests.js"></script>
 
-            // window.todo.controller = new TodoListController(window.todo.model);
-            // window.todoListTester = new TodoListTester();
-            // window.todoListTester.runTests()
+  <!-- FOR TESTING OUR TODO LISTS -->
+  <script src="./test/jsTPS_Tester.js"></script>
 
-            jstpsUnitTests.testAdd();
-            
-        }
-    </script>
-  </head>
+  <script>
+    window.onload = function () {
+      window.jstps = new jsTPS();
+      window.jstpsUnitTests = new jsTPS_Unit_Tests();
 
-  <body>
-      <div id="unit_tests"></div>
-  </body>
+      // window.todo.controller = new TodoListController(window.todo.model);
+      // window.todoListTester = new TodoListTester();
+      // window.todoListTester.runTests()
+
+      jstpsUnitTests.testAdd();
+
+    }
+  </script>
+</head>
+
+<body>
+  <div id="unit_tests"></div>
+</body>
 
 </html>
-    
-    
