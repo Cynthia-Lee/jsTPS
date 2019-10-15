@@ -19,34 +19,40 @@
  * @version 2.0
  */
 class jsTPS_Unit_Tests {
-
+    // like java
     assertEquals(a, b) {
         return a == b;
     }
 
+    stringAssertEquals(a, b, varA) {
+        return varA + " is equal to " + b + ": " + this.assertEquals(a, b);
+    }
+
+    /*
     stringAssertEquals(varNameA, varNameB, assertEquals) {
         return varNameA + " is equal to " + varNameB + ": " + assertEquals;
     }
+    */
 
     /**
      * This JUnit test is for testing the adding of transactions.
      */
     // @Test
     testAdd() {
-        var parent = document.getElementById("unit_tests");
-        var testAddDiv = document.createElement("div")
-        testAddDiv.id = "test_add";
-        parent.appendChild(testAddDiv);
-        testAddDiv.innerHTML = "<h2>Test Add:</h2>";
+        let parent = document.getElementById("unit_tests");
+        let testDiv = document.createElement("div")
+        testDiv.id = "test_add";
+        parent.appendChild(testDiv);
+        testDiv.innerHTML = "<h2>Test Add:</h2>";
         var test0 = document.createElement("p");
-        testAddDiv.appendChild(test0);
+        testDiv.appendChild(test0);
 
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
         let num = new Num();
         
         var t0 = document.createTextNode(
-            this.stringAssertEquals("Num", 0, this.assertEquals(0, num.num))
+            this.stringAssertEquals(0, num.num, "Num")
             );
         test0.appendChild(t0);
         // this.assertEquals(0, num.num); // Assert.assertEquals(0, num.getNum());
@@ -55,38 +61,62 @@ class jsTPS_Unit_Tests {
         let test1 = document.createElement("p");
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         var t1 = 
-            this.stringAssertEquals("Num", 5, this.assertEquals(5, num.num)) + "<br>" +
-            this.stringAssertEquals("Stack size", 1, this.assertEquals(1, tps.getSize())) ;
-        
+            "<strong>Add 5 Transaction</strong><br>" +
+            this.stringAssertEquals(5, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(1, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(1, tps.getUndoSize(), "Undo size")
+            ;
         test1.innerHTML = t1;
-        console.log(t1);
-        testAddDiv.appendChild(test1);
-
-        return
-
-        // Assert.assertEquals(0, num.getNum());
-
+        testDiv.appendChild(test1);
+        /*
         // ADD 5 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         this.assertEquals(5, num.getNum());
         this.assertEquals(1, tps.getSize());
         this.assertEquals(0, tps.getRedoSize());
         this.assertEquals(1, tps.getUndoSize());
-
+        */
     
-        // ADD 10 TRANSACTION
+        let test2 = document.createElement("p");
         tps.addTransaction(new AddToNum_Transaction(num, 10));
-        Assert.assertEquals(15, num.getNum());
-        Assert.assertEquals(2, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(2, tps.getUndoSize());
-        
-        // ADD 15 TRANSACTION
-        tps.addTransaction(new AddToNum_Transaction(num, 20));
-        Assert.assertEquals(35, num.getNum());
-        Assert.assertEquals(3, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(3, tps.getUndoSize());
+        var t2 = 
+            "<strong>Add 10 Transaction</strong><br>" +
+            this.stringAssertEquals(15, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(2, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(2, tps.getUndoSize(), "Undo size")
+            ;
+       test2.innerHTML = t2;
+       testDiv.appendChild(test2);
+       /*
+       // ADD 10 TRANSACTION
+       tps.addTransaction(new AddToNum_Transaction(num, 10));
+       Assert.assertEquals(15, num.getNum());
+       Assert.assertEquals(2, tps.getSize());
+       Assert.assertEquals(0, tps.getRedoSize());
+       Assert.assertEquals(2, tps.getUndoSize());
+       */
+
+       let test3 = document.createElement("p");
+       tps.addTransaction(new AddToNum_Transaction(num, 20));
+       var t3 = 
+            "<strong>Add 10 Transaction</strong><br>" +
+            this.stringAssertEquals(35, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(3, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(3, tps.getUndoSize(), "Undo size")
+            ;
+       test3.innerHTML = t3;
+       testDiv.appendChild(test3);
+       /*
+       // ADD 15 TRANSACTION
+       tps.addTransaction(new AddToNum_Transaction(num, 20));
+       Assert.assertEquals(35, num.getNum());
+       Assert.assertEquals(3, tps.getSize());
+       Assert.assertEquals(0, tps.getRedoSize());
+       Assert.assertEquals(3, tps.getUndoSize());
+       */
     }
     
     /**
@@ -94,11 +124,14 @@ class jsTPS_Unit_Tests {
      */
     // @Test
     testAndMask() {
+        
+        /*
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
         let num = new Num();
         Assert.assertEquals(0, num.getNum());
-        
+        */
+
         // ADD 5 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 12));
         tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
