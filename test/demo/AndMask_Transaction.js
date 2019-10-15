@@ -36,17 +36,17 @@ class AndMask_Transaction extends jTPS_Transaction {
     /**
      * This transaction simply adds the value to the num.
      */
-    @Override
-    public void doTransaction() {
-        num.andMask(mask);
+    // @Override
+    doTransaction() {
+        this.num.andMask(this.mask);
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
-    @Override
-    public void undoTransaction() {
-        num.setNum(intNum);
+    // @Override
+    undoTransaction() {
+        this.num.setNum(intNum);
     }
 
     /**
@@ -54,8 +54,8 @@ class AndMask_Transaction extends jTPS_Transaction {
      * 
      * @return A string storing a textual summary of this object.
      */
-    @Override
-    public String toString() {
-        return "And Mask " + mask;
+    // @Override
+    toString() {
+        return "And Mask " + this.mask;
     }
 }

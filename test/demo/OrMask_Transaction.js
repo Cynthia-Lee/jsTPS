@@ -1,19 +1,19 @@
-package demo;
+// package demo;
 
-import jtps.jTPS_Transaction;
+// import jtps.jTPS_Transaction;
 
 /**
  *
  * @author McKillaGorilla
  */
-public class OrMask_Transaction implements jTPS_Transaction {
+class OrMask_Transaction extends jTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
-    private Num num;
+    // private Num num;
     
-    private int intNum;
+    // private int intNum;
     
     // AMOUNT TO MASK FOR NUM
-    private int mask;
+    // private int mask;
 
     /**
      * Constructor for this transaction, it initializes this
@@ -23,27 +23,31 @@ public class OrMask_Transaction implements jTPS_Transaction {
      * @param initNum
      * @param initAmountToAdd 
      */
-    public OrMask_Transaction(Num initNum, int initIntNum, int initMask) {
+    constructor(initNum, initIntNum, initMask) {
+        super();
+        this.num = initNum;
+        this.intNum = initIntNum;
+        this.mask = initMask;
         // KEEP THESE FOR LATER
-        num = initNum;
-        intNum = initIntNum;
-        mask = initMask;
+        // num = initNum;
+        // intNum = initIntNum;
+        // mask = initMask;
     }
 
     /**
      * This transaction simply adds the value to the num.
      */
-    @Override
-    public void doTransaction() {
-        num.orMask(mask);
+    // @Override
+    doTransaction() {
+        this.num.orMask(this.mask);
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
-    @Override
-    public void undoTransaction() {
-        num.setNum(intNum);
+    // @Override
+    undoTransaction() {
+        this.num.setNum(this.intNum);
     }
 
     /**
@@ -51,8 +55,8 @@ public class OrMask_Transaction implements jTPS_Transaction {
      * 
      * @return A string storing a textual summary of this object.
      */
-    @Override
-    public String toString() {
-        return "Or Mask " + mask;
+    // @Override
+    toString() {
+        return "Or Mask " + this.mask;
     }
 }
