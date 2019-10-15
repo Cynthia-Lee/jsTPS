@@ -1,19 +1,19 @@
-package demo;
+// package demo;
 
-import jtps.jTPS_Transaction;
+// import jtps.jTPS_Transaction;
 
 /**
  *
  * @author McKillaGorilla
  */
-public class AndMask_Transaction implements jTPS_Transaction {
+class AndMask_Transaction extends jTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
-    private Num num;
+    // private Num num;
     
-    private int intNum;
+    // private int intNum;
     
     // AMOUNT TO MASK FOR NUM
-    private int mask;
+    // private int mask;
 
     /**
      * Constructor for this transaction, it initializes this
@@ -23,11 +23,14 @@ public class AndMask_Transaction implements jTPS_Transaction {
      * @param initNum
      * @param initAmountToAdd 
      */
-    public AndMask_Transaction(Num initNum, int initIntNum, int initMask) {
+    constructor(initNum, initIntNum, initMask) {
+        this.num = initNum;
+        this.intNum = initIntNum;
+        this.mask = initMask;
         // KEEP THESE FOR LATER
-        num = initNum;
-        intNum = initIntNum;
-        mask = initMask;
+        // num = initNum;
+        // intNum = initIntNum;
+        // mask = initMask;
     }
 
     /**
