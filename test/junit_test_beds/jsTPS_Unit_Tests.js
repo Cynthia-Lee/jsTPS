@@ -50,8 +50,10 @@ class jsTPS_Unit_Tests {
             );
         test0.appendChild(t0);
         // this.assertEquals(0, num.num); // Assert.assertEquals(0, num.getNum());
+        // ---
 
         let test1 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 5));
         var t1 = 
             this.stringAssertEquals("Num", 5, this.assertEquals(5, num.num)) + "<br>" +
             this.stringAssertEquals("Stack size", 1, this.assertEquals(1, tps.getSize())) ;
@@ -72,7 +74,6 @@ class jsTPS_Unit_Tests {
         this.assertEquals(1, tps.getUndoSize());
 
     
-        
         // ADD 10 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 10));
         Assert.assertEquals(15, num.getNum());

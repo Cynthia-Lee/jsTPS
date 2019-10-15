@@ -69,9 +69,9 @@ class jsTPS {
     addTransaction(transaction) {
         // ARE THERE OLD UNDONE TRANSACTIONS ON THE STACK THAT FIRST
         // NEED TO BE CLEARED OUT, i.e. ARE WE BRANCHING?
-        if ((this.mostRecentTransaction < 0)|| (this.mostRecentTransaction < (this.transactions.size()-1))) {
+        if ((this.mostRecentTransaction < 0)|| (this.mostRecentTransaction < (this.transactions.length-1))) {
             var i;
-            for (i = transactions.size()-1; i > mostRecentTransaction; i--) {
+            for (i = this.transactions.length-1; i > this.mostRecentTransaction; i--) {
                 this.transactions.splice(i, 1);
             }
         }
@@ -111,7 +111,7 @@ class jsTPS {
      */
     peekUndo() {
         if (this.hasTransactionToUndo()) {
-            return this.transactions[mostRecentTransaction];
+            return this.transactions[this.mostRecentTransaction];
         }
         else
             return null;
@@ -126,7 +126,7 @@ class jsTPS {
      */    
     peekDo() {
         if (this.hasTransactionToRedo()) {
-            return this.transactions[mostRecentTransaction+1];
+            return this.transactions[this.mostRecentTransaction+1];
         }
         else
             return null;
@@ -139,7 +139,7 @@ class jsTPS {
     undoTransaction() {
         if (this.hasTransactionToUndo()) {
             this.performingUndo = true;
-            var transaction = this.transactions[mostRecentTransaction];
+            var transaction = this.transactions[this.mostRecentTransaction];
             transaction.undoTransaction();
             this.mostRecentTransaction--;
             this.performingUndo = false;
