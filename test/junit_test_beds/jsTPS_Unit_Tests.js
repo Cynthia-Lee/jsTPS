@@ -128,7 +128,7 @@ class jsTPS_Unit_Tests {
         let testDiv = document.createElement("div")
         testDiv.id = "test_andMask";
         parent.appendChild(testDiv);
-        testDiv.innerHTML = "<h2>Test andMask:</h2>";
+        testDiv.innerHTML = "<h2>Test AndMask:</h2>";
         var test0 = document.createElement("p");
         testDiv.appendChild(test0);
 
@@ -186,7 +186,63 @@ class jsTPS_Unit_Tests {
     }
 
     testOrMask() {
+        // this test was originally empty
 
+        let parent = document.getElementById("unit_tests");
+        let testDiv = document.createElement("div")
+        testDiv.id = "test_orMask";
+        parent.appendChild(testDiv);
+        testDiv.innerHTML = "<h2>Test OrMask:</h2>";
+        var test0 = document.createElement("p");
+        testDiv.appendChild(test0);
+
+        // WE'LL JUST USE A SIMPLE NUM FOR TESTING
+        let tps = new jsTPS();
+        let num = new Num();
+
+        var t0 = document.createTextNode(
+            this.stringAssertEquals(0, num.num, "Num")
+        );
+        test0.appendChild(t0);
+        /*
+        // WE'LL JUST USE A SIMPLE NUM FOR TESTING
+        let tps = new jsTPS();
+        let num = new Num();
+        Assert.assertEquals(0, num.getNum());
+        */
+
+        let test1 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 16));
+        tps.addTransaction(new OrMask_Transaction(num, num.getNum(), 7));
+        var t1 =
+            "<strong>Add 16 Transaction, OrMask 7 Transaction</strong><br>" +
+            this.stringAssertEquals(23, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(2, tps.getSize(), "Stack size")
+            ;
+        test1.innerHTML = t1;
+        testDiv.appendChild(test1);
+        /*
+        15 bit or 7 = 23
+        */
+
+        let test2 = document.createElement("p");
+        tps.undoTransaction();
+        var t2 =
+            "<strong>Undo Transaction</strong><br>" +
+            this.stringAssertEquals(16, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(2, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(1, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(1, tps.getUndoSize(), "Undo size")
+            ;
+        test2.innerHTML = t2;
+        testDiv.appendChild(test2);
+        /*
+        tps.undoTransaction();
+        Assert.assertEquals(12, num.getNum());
+        Assert.assertEquals(2, tps.getSize());
+        Assert.assertEquals(1, tps.getRedoSize());
+        Assert.assertEquals(1, tps.getUndoSize());
+        */
     }
 
     /**
