@@ -6,7 +6,7 @@
  *
  * @author McKillaGorilla
  */
-class AndMask_Transaction extends jTPS_Transaction {
+class AndMask_Transaction extends jsTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
     // private Num num;
     

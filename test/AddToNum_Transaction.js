@@ -12,7 +12,7 @@
  * @author THE McKilla Gorilla (accept no imposters)
  * @version 2.0
  */
-class AddToNum_Transaction extends jTPS_Transaction {
+class AddToNum_Transaction extends jsTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
     // private Num num;
     

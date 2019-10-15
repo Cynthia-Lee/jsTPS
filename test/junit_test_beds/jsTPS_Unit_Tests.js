@@ -1,34 +1,37 @@
-package junit_test_beds;
+// package junit_test_beds;
 
-import demo.AddToNum_Transaction;
-import demo.AndMask_Transaction;
-import demo.Num;
-import jtps.jTPS;
-import org.junit.Assert;
-import org.junit.Test;
+// import demo.AddToNum_Transaction;
+import AddToNum_Transaction from '../AddToNum_Transaction';
+// import demo.AndMask_Transaction;
+import AndMask_Transaction from '../AndMask_Transaction';
+// import demo.Num;
+import Num from '../Num';
+// import jtps.jTPS;
+// import org.junit.Assert;
+// import org.junit.Test;
 
 /**
- * jTPS_Unit_Tests.java
+ * jsTPS_Unit_Tests.js
  * 
- * This file provides a test bed for the jTPS framework.
+ * This file provides a test bed for the jaTPS framework.
  * 
  * @author McKilla Gorilla
  * @version 2.0
  */
-public class jTPS_Unit_Tests {
+class jTPS_Unit_Tests {
     /**
      * This JUnit test is for testing the adding of transactions.
      */
-    @Test
-    public void testAdd() {
+    // @Test
+    testAdd() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
-        jTPS tps = new jTPS();
-        Num num = new Num();
+        var tps = new jTPS();
+        var num = new Num();
         Assert.assertEquals(0, num.getNum());
         
         // ADD 5 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 5));
-        Assert.assertEquals(5, num.getNum());
+        return Assert.assertEquals(5, num.getNum());
         Assert.assertEquals(1, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(1, tps.getUndoSize());

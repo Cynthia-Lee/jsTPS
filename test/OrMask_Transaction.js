@@ -6,7 +6,7 @@
  *
  * @author McKillaGorilla
  */
-class OrMask_Transaction extends jTPS_Transaction {
+class OrMask_Transaction extends jsTPS_Transaction {
     // THIS IS THE OBJECT IT WILL MANIPULATE
     // private Num num;
     
