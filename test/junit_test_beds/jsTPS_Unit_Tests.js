@@ -1,11 +1,11 @@
 // package junit_test_beds;
 
 // import demo.AddToNum_Transaction;
-import AddToNum_Transaction from '../AddToNum_Transaction';
+    // import AddToNum_Transaction from '../AddToNum_Transaction';
 // import demo.AndMask_Transaction;
-import AndMask_Transaction from '../AndMask_Transaction';
+    // import AndMask_Transaction from '../AndMask_Transaction';
 // import demo.Num;
-import Num from '../Num';
+    // import Num from '../Num';
 // import jtps.jTPS;
 // import org.junit.Assert;
 // import org.junit.Test;
@@ -18,16 +18,22 @@ import Num from '../Num';
  * @author McKilla Gorilla
  * @version 2.0
  */
-class jTPS_Unit_Tests {
+class jsTPS_Unit_Tests {
+
+    assertEquals(a, b) {
+        return a == b;
+    }
+
     /**
      * This JUnit test is for testing the adding of transactions.
      */
     // @Test
     testAdd() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
-        var tps = new jTPS();
-        var num = new Num();
-        Assert.assertEquals(0, num.getNum());
+        let tps = new jsTPS();
+        let num = new Num();
+        
+        return this.assertEquals(0, num.num); // Assert.assertEquals(0, num.getNum());
         
         // ADD 5 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 5));
@@ -54,11 +60,11 @@ class jTPS_Unit_Tests {
     /**
      * 
      */
-    @Test
-    public void testAndMask() {
+    // @Test
+    testAndMask() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
-        jTPS tps = new jTPS();
-        Num num = new Num();
+        let tps = new jsTPS();
+        let num = new Num();
         Assert.assertEquals(0, num.getNum());
         
         // ADD 5 TRANSACTION
@@ -75,18 +81,18 @@ class jTPS_Unit_Tests {
 
     }
     
-    public void testOrMask() {
+    testOrMask() {
         
     }
 
     /**
      * This JUnit test is for testing the undoing of transactions.
      */
-    @Test
-    public void testUndo() {
+    // @Test
+    testUndo() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
-        jTPS tps = new jTPS();
-        Num num = new Num();
+        let tps = new jsTPS();
+        let num = new Num();
         Assert.assertEquals(num.getNum(), 0);
         Assert.assertFalse(tps.hasTransactionToUndo());
         Assert.assertFalse(tps.hasTransactionToRedo());
@@ -143,11 +149,11 @@ class jTPS_Unit_Tests {
     /**
      * This JUnit test is for testing the redoing of transactions.
      */
-    @Test
-    public void testRedo() {
+    // @Test
+    testRedo() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
-        jTPS tps = new jTPS();
-        Num num = new Num();
+        let tps = new jsTPS();
+        let num = new Num();
         Assert.assertEquals(num.getNum(), 0);
         
         // ADD 3 TRANSACTIONS (5, 10, and 15)
@@ -231,11 +237,11 @@ class jTPS_Unit_Tests {
     /**
      * This JUnit test is for testing clearing of transactions.
      */
-    @Test
-    public void testClear() {
+    // @Test
+    testClear() {
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
-        jTPS tps = new jTPS();
-        Num num = new Num();
+        let tps = new jsTPS();
+        let num = new Num();
         Assert.assertEquals(num.getNum(), 0);
         
         // ADD 3 TRANSACTIONS (5, 10, and 15)

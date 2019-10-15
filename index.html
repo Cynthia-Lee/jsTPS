@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head> 
-      <title>Test test test test</title>
+      <title>jsTPS Tests</title>
       <!--
       <link href="./css/fonts/Lexend Exa/css.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="./css/todo_layout.css" />
@@ -10,8 +10,10 @@
       
       <script src="./src/jstps/jsTPS.js"></script>
       <script src="./src/jstps/jsTPS_Transaction.js"></script>
+
       <script src="./test/AddToNum_Transaction.js"></script>
       <script src="./test/AndMask_Transaction.js"></script>
+      <script src="./test/Num.js"></script>
 
       <script src="./test/junit_test_beds/jsTPS_Unit_Tests.js"></script>
       
@@ -20,18 +22,20 @@
 
     <script>
         window.onload = function () {
-            window.todo = new TodoList();
-            window.todo.view = new TodoListView();
-            window.todo.model = new TodoListModel(window.todo.view);
-            window.todo.controller = new TodoListController(window.todo.model);
-            window.todoListTester = new TodoListTester();
-            window.todoListTester.runTests()
+            window.jstps = new jsTPS();
+            window.jstpsUnitTests = new jsTPS_Unit_Tests();
+
+            // window.todo.controller = new TodoListController(window.todo.model);
+            // window.todoListTester = new TodoListTester();
+            // window.todoListTester.runTests()
+
+            console.log(jstpsUnitTests.testAdd());
         }
     </script>
   </head>
 
   <body>
-      w
+      
   </body>
 
 </html>
