@@ -95,7 +95,7 @@ class jsTPS {
     doTransaction() {
         if (this.hasTransactionToRedo()) {
             this.performingDo = true;
-            var transaction = this.transactions.[this.mostRecentTransaction+1];
+            var transaction = this.transactions[this.mostRecentTransaction+1];
             transaction.doTransaction();
             this.mostRecentTransaction++;
             this.performingDo = false;
