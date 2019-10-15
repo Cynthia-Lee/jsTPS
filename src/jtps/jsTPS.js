@@ -1,9 +1,9 @@
-package jtps;
+// package jtps;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 /**
- * jTPS.java
+ * jsTPS.java
  * 
  * This class is used for managing an abstract transaction processing
  * system for the purpose of managing an undo/redo system for an
@@ -13,18 +13,26 @@ import java.util.ArrayList;
  * @author THE McKilla Gorilla (accept no imposters)
  * @version 2.0
  */
-public class jTPS {
+class jsTPS {
     // THE TRANSACTION STACK
-    private ArrayList<jTPS_Transaction> transactions = new ArrayList();
+    // private ArrayList<jsTPS_Transaction> transactions = new ArrayList();
     
     // KEEPS TRACK OF WHERE WE ARE IN THE STACK, THUS AFFECTING WHAT
     // TRANSACTION MAY BE DONE OR UNDONE AT ANY GIVEN TIME
-    private int mostRecentTransaction = -1;
-    
+    // private int mostRecentTransaction = -1;
+
     // THESE VARIABLES CAN BE TURNED ON AND OFF TO SIGNAL THAT
     // DO AND UNDO OPERATIONS ARE BEING PERFORMED
-    private boolean performingDo = false;
-    private boolean performingUndo = false;
+    // private boolean performingDo = false;
+    // private boolean performingUndo = false;
+
+    constructor() {
+        this.transactions = [];
+        this.mostRecentTransaction = -1;
+
+        this.performingDo = false;
+        this.performingUndo = false;
+    }
 
     /**
      * Tests to see if the do (i.e. redo) operation is currently being
@@ -33,8 +41,8 @@ public class jTPS {
      * @return true if the do (i.e. redo) operation is currently in the
      * process of executing, false otherwise.
      */
-    public boolean isPerformingDo() {
-        return performingDo;
+    isPerformingDo() {
+        return this.performingDo;
     }
     
     /**
@@ -44,8 +52,8 @@ public class jTPS {
      * @return true if the undo operation is currently in the
      * process of executing, false otherwise.
      */
-    public boolean isPerformingUndo() {
-        return performingUndo;
+    isPerformingUndo() {
+        return this.performingUndo;
     }
     
     /**
@@ -58,20 +66,25 @@ public class jTPS {
      * @param transaction The custom transaction to be added to
      * the transaction processing system stack and executed.
      */
-    public void addTransaction(jTPS_Transaction transaction) {
+    addTransaction(transaction) {
         // ARE THERE OLD UNDONE TRANSACTIONS ON THE STACK THAT FIRST
         // NEED TO BE CLEARED OUT, i.e. ARE WE BRANCHING?
-        if ((mostRecentTransaction < 0)|| (mostRecentTransaction < (transactions.size()-1))) {
-            for (int i = transactions.size()-1; i > mostRecentTransaction; i--) {
-                transactions.remove(i);
+        if ((this.mostRecentTransaction < 0)|| (this.mostRecentTransaction < (this.transactions.size()-1))) {
+            var i;
+            for (i = transactions.size()-1; i > mostRecentTransaction; i--) {
+                this.transactions.splice(i, 1);
             }
         }
 
         // AND NOW ADD THE TRANSACTION
-        transactions.add(transaction);
+        // transactions.add(transaction);
+        // add will put transaction to the end of the array
+        // the end of the array is the top of the stack
+        this.transactions.push(transaction);
+        // will push transaction to the end of the array
 
         // AND EXECUTE IT
-        doTransaction();        
+        this.doTransaction();        
     }
 
     /**
@@ -79,13 +92,13 @@ public class jTPS {
      * then moving the TPS counter. Note that this may be the transaction
      * at the top of the TPS stack or somewhere in the middle (i.e. a redo).
      */
-    public void doTransaction() {
-        if (hasTransactionToRedo()) {
-            performingDo = true;
-            jTPS_Transaction transaction = transactions.get(mostRecentTransaction+1);
+    doTransaction() {
+        if (this.hasTransactionToRedo()) {
+            this.performingDo = true;
+            var transaction = this.transactions.[this.mostRecentTransaction+1];
             transaction.doTransaction();
-            mostRecentTransaction++;
-            performingDo = false;
+            this.mostRecentTransaction++;
+            this.performingDo = false;
         }
     }
     
@@ -96,9 +109,9 @@ public class jTPS {
      * @return The transaction that would be executed if undo is performed, if
      * there is no transaction to undo, null is returned.
      */
-    public jTPS_Transaction peekUndo() {
-        if (hasTransactionToUndo()) {
-            return transactions.get(mostRecentTransaction);
+    peekUndo() {
+        if (this.hasTransactionToUndo()) {
+            return this.transactions[mostRecentTransaction];
         }
         else
             return null;
@@ -111,9 +124,9 @@ public class jTPS {
      * @return The transaction that would be executed if redo is performed, if
      * there is no transaction to undo, null is returned.
      */    
-    public jTPS_Transaction peekDo() {
-        if (hasTransactionToRedo()) {
-            return transactions.get(mostRecentTransaction+1);
+    peekDo() {
+        if (this.hasTransactionToRedo()) {
+            return this.transactions[mostRecentTransaction+1];
         }
         else
             return null;
@@ -123,13 +136,13 @@ public class jTPS {
      * This function gets the most recently executed transaction on the 
      * TPS stack and undoes it, moving the TPS counter accordingly.
      */
-    public void undoTransaction() {
-        if (hasTransactionToUndo()) {
-            performingUndo = true;
-            jTPS_Transaction transaction = transactions.get(mostRecentTransaction);
+    undoTransaction() {
+        if (this.hasTransactionToUndo()) {
+            this.performingUndo = true;
+            var transaction = this.transactions[mostRecentTransaction];
             transaction.undoTransaction();
-            mostRecentTransaction--;
-            performingUndo = false;
+            this.mostRecentTransaction--;
+            this.performingUndo = false;
         }
     }
 
@@ -138,13 +151,13 @@ public class jTPS {
      * and resets the counter that keeps track of the location
      * of the top of the stack.
      */
-    public void clearAllTransactions() {
+    clearAllTransactions() {
         // REMOVE ALL THE TRANSACTIONS
-        transactions.clear();
+        this.transactions = [];
         
         // MAKE SURE TO RESET THE LOCATION OF THE
         // TOP OF THE TPS STACK TOO
-        mostRecentTransaction = -1;        
+        this.mostRecentTransaction = -1;        
     }
     
     /**
@@ -154,8 +167,8 @@ public class jTPS {
      * 
      * @return The number of transactions currently in the transaction stack.
      */
-    public int getSize() {
-        return this.transactions.size();
+    getSize() {
+        return this.transactions.length;
     }
     
     /**
@@ -165,8 +178,8 @@ public class jTPS {
      * 
      * @return The number of transactions in the stack that can be redone.
      */
-    public int getRedoSize() {
-        return getSize() - mostRecentTransaction - 1;
+    getRedoSize() {
+        return this.getSize() - this.mostRecentTransaction - 1;
     }
 
     /**
@@ -176,8 +189,8 @@ public class jTPS {
      * @return The number of transactions in the transaction stack that
      * can be undone.
      */
-    public int getUndoSize() {
-        return mostRecentTransaction + 1;
+    getUndoSize() {
+        return this.mostRecentTransaction + 1;
     }
     
     /**
@@ -186,8 +199,8 @@ public class jTPS {
      * 
      * @return true if an undo operation is possible, false otherwise.
      */
-    public boolean hasTransactionToUndo() {
-        return mostRecentTransaction >= 0;
+    hasTransactionToUndo() {
+        return this.mostRecentTransaction >= 0;
     }
     
     /**
@@ -196,8 +209,8 @@ public class jTPS {
      * 
      * @return true if a redo operation is possible, false otherwise.
      */
-    public boolean hasTransactionToRedo() {
-        return mostRecentTransaction < (transactions.size()-1);
+    hasTransactionToRedo() {
+        return this.mostRecentTransaction < (this.transactions.length-1);
     }
         
     /**
@@ -207,13 +220,14 @@ public class jTPS {
      * 
      * @return A textual summary of the TPS.
      */
-    public String toString() {
-        String text = "--Number of Transactions: " + transactions.size() + "\n";
-        text += "--Current Index on Stack: " + mostRecentTransaction + "\n";
+    toString() {
+        var text = "--Number of Transactions: " + this.transactions.length + "\n";
+        text += "--Current Index on Stack: " + this.mostRecentTransaction + "\n";
         text += "--Current Transaction Stack:\n";
-        for (int i = 0; i <= mostRecentTransaction; i++) {
-            jTPS_Transaction jT = transactions.get(i);
-            text += "----" + jT.toString() + "\n";
+        var i;
+        for (i = 0; i <= this.mostRecentTransaction; i++) {
+            var jsT = this.transactions[i];
+            text += "----" + jsT.toString() + "\n";
         }
         return text;
     }
