@@ -644,11 +644,43 @@ class jsTPS_Unit_Tests {
      */
     // @Test
     testClear() {
+        let parent = document.getElementById("unit_tests");
+        let testDiv = document.createElement("div")
+        testDiv.id = "test_clear";
+        parent.appendChild(testDiv);
+        testDiv.innerHTML = "<h2>Test Clear:</h2>";
+        // var test0 = document.createElement("p");
+        // testDiv.appendChild(test0);
+
+        // WE'LL JUST USE A SIMPLE NUM FOR TESTING
+        let tps = new jsTPS();
+        let num = new Num();
+
+        let test0 = document.createElement("p");
+        var t0 = this.stringAssertEquals(0, num.num, "Num");
+        test0.innerHTML = t0;
+        testDiv.appendChild(test0);
+        /*
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
         let num = new Num();
         Assert.assertEquals(num.getNum(), 0);
+        */
 
+        let test1 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 5));
+        tps.addTransaction(new AddToNum_Transaction(num, 10));
+        tps.addTransaction(new AddToNum_Transaction(num, 20));
+        var t1 =
+            "<strong>Add 5 Transaction, Add 10 Transaction, Add 20 Transaction</strong><br>" +
+            this.stringAssertEquals(35, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(3, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(3, tps.getUndoSize(), "Undo size")
+            ;
+        test1.innerHTML = t1;
+        testDiv.appendChild(test1);
+        /*
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -657,14 +689,42 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
+        */
 
+        let test2 = document.createElement("p");
+        tps.clearAllTransactions();
+        var t2 =
+            "<strong>Clear Transaction</strong><br>" +
+            this.stringAssertEquals(35, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(0, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(0, tps.getUndoSize(), "Undo size")
+            ;
+        test2.innerHTML = t2;
+        testDiv.appendChild(test2);
+        /*
         // CLEAR ALL THE TRANSACTIONS
         tps.clearAllTransactions();
         Assert.assertEquals(35, num.getNum());
         Assert.assertEquals(0, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(0, tps.getUndoSize());
+        */
 
+        let test3 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 5));
+        tps.addTransaction(new AddToNum_Transaction(num, 10));
+        tps.addTransaction(new AddToNum_Transaction(num, 20));
+        var t3 =
+            "<strong>Add 5 Transaction, Add 10 Transaction, Add 20 Transaction</strong><br>" +
+            this.stringAssertEquals(70, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(3, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(3, tps.getUndoSize(), "Undo size")
+            ;
+        test3.innerHTML = t3;
+        testDiv.appendChild(test3);
+        /*
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -673,14 +733,42 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
+        */
 
+        let test4 = document.createElement("p");
+        tps.clearAllTransactions();
+        var t4 =
+            "<strong>Clear Transaction</strong><br>" +
+            this.stringAssertEquals(70, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(0, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(0, tps.getUndoSize(), "Undo size")
+            ;
+        test4.innerHTML = t4;
+        testDiv.appendChild(test4);
+        /*
         // CLEAR THEM ALL OUT AGAIN
         tps.clearAllTransactions();
         Assert.assertEquals(70, num.getNum());
         Assert.assertEquals(0, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(0, tps.getUndoSize());
+        */
 
+        let test5 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 5));
+        tps.addTransaction(new AddToNum_Transaction(num, 10));
+        tps.addTransaction(new AddToNum_Transaction(num, 20));
+        var t5 =
+            "<strong>Add 5 Transaction, Add 10 Transaction, Add 20 Transaction</strong><br>" +
+            this.stringAssertEquals(105, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(3, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(3, tps.getUndoSize(), "Undo size")
+            ;
+        test5.innerHTML = t5;
+        testDiv.appendChild(test5);
+        /*
         // ADD 3 TRANSACTIONS (5, 10, and 15)
         tps.addTransaction(new AddToNum_Transaction(num, 5));
         tps.addTransaction(new AddToNum_Transaction(num, 10));
@@ -689,5 +777,6 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(3, tps.getSize());
         Assert.assertEquals(0, tps.getRedoSize());
         Assert.assertEquals(3, tps.getUndoSize());
+        */
     }
 }
