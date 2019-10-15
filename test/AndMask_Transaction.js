@@ -24,6 +24,7 @@ class AndMask_Transaction extends jsTPS_Transaction {
      * @param initAmountToAdd 
      */
     constructor(initNum, initIntNum, initMask) {
+        super();
         this.num = initNum;
         this.intNum = initIntNum;
         this.mask = initMask;
@@ -46,7 +47,7 @@ class AndMask_Transaction extends jsTPS_Transaction {
      */
     // @Override
     undoTransaction() {
-        this.num.setNum(intNum);
+        this.num.setNum(this.intNum);
     }
 
     /**

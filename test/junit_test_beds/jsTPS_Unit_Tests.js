@@ -124,7 +124,22 @@ class jsTPS_Unit_Tests {
      */
     // @Test
     testAndMask() {
+        let parent = document.getElementById("unit_tests");
+        let testDiv = document.createElement("div")
+        testDiv.id = "test_andMask";
+        parent.appendChild(testDiv);
+        testDiv.innerHTML = "<h2>Test andMask:</h2>";
+        var test0 = document.createElement("p");
+        testDiv.appendChild(test0);
 
+        // WE'LL JUST USE A SIMPLE NUM FOR TESTING
+        let tps = new jsTPS();
+        let num = new Num();
+
+        var t0 = document.createTextNode(
+            this.stringAssertEquals(0, num.num, "Num")
+        );
+        test0.appendChild(t0);
         /*
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
@@ -132,18 +147,42 @@ class jsTPS_Unit_Tests {
         Assert.assertEquals(0, num.getNum());
         */
 
+        let test1 = document.createElement("p");
+        tps.addTransaction(new AddToNum_Transaction(num, 12));
+        tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
+        var t1 =
+            "<strong>Add 12 Transaction, AddMask 4 Transaction</strong><br>" +
+            this.stringAssertEquals(4, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(2, tps.getSize(), "Stack size")
+            ;
+        test1.innerHTML = t1;
+        testDiv.appendChild(test1);
+        /*
         // ADD 5 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 12));
         tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
         Assert.assertEquals(4, num.getNum());
         Assert.assertEquals(2, tps.getSize());
+        */
 
+        let test2 = document.createElement("p");
+        tps.undoTransaction();
+        var t2 =
+            "<strong>Undo Transaction</strong><br>" +
+            this.stringAssertEquals(12, num.num, "Num") + "<br>" +
+            this.stringAssertEquals(2, tps.getSize(), "Stack size") + "<br>" +
+            this.stringAssertEquals(1, tps.getRedoSize(), "Redo size") + "<br>" +
+            this.stringAssertEquals(1, tps.getUndoSize(), "Undo size")
+            ;
+        test2.innerHTML = t2;
+        testDiv.appendChild(test2);
+        /*
         tps.undoTransaction();
         Assert.assertEquals(12, num.getNum());
         Assert.assertEquals(2, tps.getSize());
         Assert.assertEquals(1, tps.getRedoSize());
         Assert.assertEquals(1, tps.getUndoSize());
-
+        */
     }
 
     testOrMask() {
