@@ -24,23 +24,54 @@ class jsTPS_Unit_Tests {
         return a == b;
     }
 
+    stringAssertEquals(varNameA, varNameB, assertEquals) {
+        return varNameA + " is equal to " + varNameB + ": " + assertEquals;
+    }
+
     /**
      * This JUnit test is for testing the adding of transactions.
      */
     // @Test
     testAdd() {
+        var parent = document.getElementById("unit_tests");
+        var testAddDiv = document.createElement("div")
+        testAddDiv.id = "test_add";
+        parent.appendChild(testAddDiv);
+        testAddDiv.innerHTML = "<h2>Test Add:</h2>";
+        var test0 = document.createElement("p");
+        testAddDiv.appendChild(test0);
+
         // WE'LL JUST USE A SIMPLE NUM FOR TESTING
         let tps = new jsTPS();
         let num = new Num();
         
-        return this.assertEquals(0, num.num); // Assert.assertEquals(0, num.getNum());
+        var t0 = document.createTextNode(
+            this.stringAssertEquals("Num", 0, this.assertEquals(0, num.num))
+            );
+        test0.appendChild(t0);
+        // this.assertEquals(0, num.num); // Assert.assertEquals(0, num.getNum());
+
+        let test1 = document.createElement("p");
+        var t1 = 
+            this.stringAssertEquals("Num", 5, this.assertEquals(5, num.num)) + "<br>" +
+            this.stringAssertEquals("Stack size", 1, this.assertEquals(1, tps.getSize())) ;
         
+        test1.innerHTML = t1;
+        console.log(t1);
+        testAddDiv.appendChild(test1);
+
+        return
+
+        // Assert.assertEquals(0, num.getNum());
+
         // ADD 5 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 5));
-        return Assert.assertEquals(5, num.getNum());
-        Assert.assertEquals(1, tps.getSize());
-        Assert.assertEquals(0, tps.getRedoSize());
-        Assert.assertEquals(1, tps.getUndoSize());
+        this.assertEquals(5, num.getNum());
+        this.assertEquals(1, tps.getSize());
+        this.assertEquals(0, tps.getRedoSize());
+        this.assertEquals(1, tps.getUndoSize());
+
+    
         
         // ADD 10 TRANSACTION
         tps.addTransaction(new AddToNum_Transaction(num, 10));
