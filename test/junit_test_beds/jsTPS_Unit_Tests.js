@@ -117,7 +117,7 @@ class jsTPS_Unit_Tests {
         let test3 = document.createElement("p");
         tps.addTransaction(new AddToNum_Transaction(num, 20));
         var t3 =
-            "<strong>Add 10 Transaction</strong><br>" +
+            "<strong>Add 20 Transaction</strong><br>" +
             this.stringAssertEquals(35, num.getNum(), "Num") + "<br>" +
             this.stringAssertEquals(3, tps.getSize(), "Stack size") + "<br>" +
             this.stringAssertEquals(0, tps.getRedoSize(), "Redo size") + "<br>" +

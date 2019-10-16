@@ -29,9 +29,96 @@ class jsTPS_Tester {
         // SETUP ALL THE EVENT HANDLERS FOR EXISTING CONTROLS,
         // MEANING THE ONES THAT ARE DECLARED IN index.html
 
-        // FIRST THE NEW LIST BUTTON ON THE HOME SCREEN
-        // this.registerEventHandler(TodoGUIId.HOME_NEW_LIST_BUTTON, TodoHTML.CLICK, this[TodoCallback.PROCESS_CREATE_NEW_LIST]);
+        // add transaction
+        this.registerEventHandler("add_transaction_submit_button", "click", this["processAddTransaction"].bind(this));
     }
+
+    /**
+     * This function helps the constructor setup the event handlers for all controls.
+     * 
+     * @param {TodoGUIId} id Unique identifier for the HTML control on which to
+     * listen for events.
+     * @param {TodoHTML} eventName The type of control for which to respond.
+     * @param {TodoCallback} callback The callback function to be executed when
+     * the event occurs.
+     */
+    registerEventHandler(id, eventName, callback) {
+        // GET THE CONTROL IN THE GUI WITH THE CORRESPONDING id
+        let control = document.getElementById(id);
+
+        // AND SETUP THE CALLBACK FOR THE SPECIFIED EVENT TYPE
+        control.addEventListener(eventName, callback);
+    }
+
+    /*
+    processReadAddInput() {
+        let addTextField = document.getElementById("add_transaction_textfield");
+        let newAdd = ownerTextField.value;
+        return newAdd;
+    }
+    */
+
+    // ADD AND EXECUTE A TRANSACTION
+    processAddTransaction() {
+        // get amount to add from textbox
+        /*
+        if (entry.startsWith("1")) {
+            System.out.print("\nEnter an amount to add: ");
+            entry = input.nextLine();
+            int amountToAdd = Integer.parseInt(entry);
+            jTPS_Transaction transaction = new AddToNum_Transaction(num, amountToAdd);
+            tps.addTransaction(transaction);
+        }
+        */
+        /*
+        let ownerTextField = document.getElementById(TodoGUIId.LIST_OWNER_TEXTFIELD);
+        let newOwner = ownerTextField.value;
+        let listBeingEdited = window.todo.model.listToEdit;
+        window.todo.model.updateListOwner(listBeingEdited, newOwner);
+        */
+        let addTextField = document.getElementById("add_transaction_textfield");
+        let entry = addTextField.value;
+        if (isNaN(entry) | entry.trim() == "") {
+            console.log("need number value");
+        } else {
+            let amountToAdd = Number(entry);
+            let transaction = new AddToNum_Transaction(this.num, amountToAdd);
+            console.log(transaction);
+            this.tps.addTransaction(transaction);
+            console.log(this.num);
+            console.log(this.tps);
+            console.log("Num = " + this.num.getNum());
+            console.log("Stack size = " + this.tps.getSize());
+            console.log("Redo size = " + this.tps.getRedoSize());
+            console.log("Undo size = " + this.tps.getUndoSize());
+
+        }
+
+    }
+
+    /*
+                // UNDO A TRANSACTION
+                else if(entry.startsWith("2")) {
+        tps.undoTransaction();
+    }
+                // REDO A TRANSACTION
+                else if (entry.startsWith("3")) {
+        tps.doTransaction();
+    }
+    // CLEAR ALL TRANSACTIONS
+    else if (entry.startsWith("4")) {
+        tps.clearAllTransactions();
+    }
+    // CLEAR ALL TRANSACTIONS AND RESET NUM TO 0
+    else if (entry.startsWith("5")) {
+        tps.clearAllTransactions();
+        num.setNum(0);
+    }
+    // QUIT
+    else if (entry.startsWith("Q")) {
+        keepGoing = false;
+    }
+    */
 
     /*
     // THESE ARE TO HELP WITH I/O
