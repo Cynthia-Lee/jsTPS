@@ -34,6 +34,9 @@ class jsTPS_Tester {
 
         // undo transaction
         this.registerEventHandler("undo_transaction_submit_button", "click", this["processUndoTransaction"].bind(this));
+
+        // redo transaction
+        this.registerEventHandler("redo_transaction_submit_button", "click", this["processRedoTransaction"].bind(this));
     }
 
     /**
@@ -90,6 +93,8 @@ class jsTPS_Tester {
             this.tps.addTransaction(transaction);
             console.log(this.num);
             console.log(this.tps);
+            console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
+            console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
             console.log("Num = " + this.num.getNum());
             console.log("Stack size = " + this.tps.getSize());
             console.log("Redo size = " + this.tps.getRedoSize());
@@ -117,14 +122,25 @@ class jsTPS_Tester {
         console.log("Undo size = " + this.tps.getUndoSize());
     }
 
-
-
-    /*
     // REDO A TRANSACTION
-                else if (entry.startsWith("3")) {
+    processRedoTransaction() {
+        /*
+        else if (entry.startsWith("3")) {
         tps.doTransaction();
+        }
+        */
+        this.tps.doTransaction();
+        console.log(this.num);
+        console.log(this.tps);
+        console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
+        console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
+        console.log("Num = " + this.num.getNum());
+        console.log("Stack size = " + this.tps.getSize());
+        console.log("Redo size = " + this.tps.getRedoSize());
+        console.log("Undo size = " + this.tps.getUndoSize());
     }
 
+    /*
     // CLEAR ALL TRANSACTIONS
     else if (entry.startsWith("4")) {
         tps.clearAllTransactions();
