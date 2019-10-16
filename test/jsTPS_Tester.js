@@ -1,9 +1,9 @@
-package demo;
+// package demo;
 
-import java.io.PrintStream;
-import java.util.Scanner;
-import jtps.jTPS;
-import jtps.jTPS_Transaction;
+// import java.io.PrintStream;
+// import java.util.Scanner;
+// import jtps.jTPS;
+// import jtps.jTPS_Transaction;
 
 /**
  * This driver demonstrates simple usage of the jTPS API.
@@ -11,13 +11,29 @@ import jtps.jTPS_Transaction;
  * @author THE McKilla Gorilla (accept no imposters)
  * @version 2.0
  */
-public class jTPS_Tester {
+class jsTPS_Tester {
     // HERE'S OUR TRANSACTION PROCESSING SYSTEM
-    static jTPS tps = new jTPS();
-    
+    // static jTPS tps = new jTPS();
+
     // HERE'S THE DATA WE'RE MANIPULATING IN THIS DEMO
-    static Num num = new Num();
-    
+    // static Num num = new Num();
+
+    constructor() {
+        this.tps = new jsTPS();
+        this.num = new Num();
+
+        let a = document.getElementById("unit_tests");
+        let b = document.getElementById("dynamic_tests");
+        a.style.float = "left";
+
+        // SETUP ALL THE EVENT HANDLERS FOR EXISTING CONTROLS,
+        // MEANING THE ONES THAT ARE DECLARED IN index.html
+
+        // FIRST THE NEW LIST BUTTON ON THE HOME SCREEN
+        // this.registerEventHandler(TodoGUIId.HOME_NEW_LIST_BUTTON, TodoHTML.CLICK, this[TodoCallback.PROCESS_CREATE_NEW_LIST]);
+    }
+
+    /*
     // THESE ARE TO HELP WITH I/O
     static Scanner input = new Scanner(System.in);
     static PrintStream out = System.out;
@@ -29,6 +45,7 @@ public class jTPS_Tester {
      * 
      * @param args Not used in this demo.
      */
+    /*
     public static void main(String[] args) {
         // LOOP FLAG VARIABLE
         boolean keepGoing = true;
@@ -37,11 +54,11 @@ public class jTPS_Tester {
             out.println("CURRENT jTPS:");
             out.println(tps);
             out.println();
-            
+
             // DISPLAY NUM
             out.println("num is " + num.getNum());
             out.println();
-            
+
             // DISPLAY THE MENU
             out.println("ENTER A SELECTION");
             out.println("1) Add a Transaction");
@@ -53,7 +70,7 @@ public class jTPS_Tester {
 
             // GET THE USER SELECTION
             String entry = input.nextLine();
-            
+
             // ADD AND EXECUTE A TRANSACTION
             if (entry.startsWith("1")) {
                 System.out.print("\nEnter an amount to add: ");
@@ -61,7 +78,7 @@ public class jTPS_Tester {
                 int amountToAdd = Integer.parseInt(entry);
                 jTPS_Transaction transaction = new AddToNum_Transaction(num, amountToAdd);
                 tps.addTransaction(transaction);
-            }            
+            }
             // UNDO A TRANSACTION
             else if (entry.startsWith("2")) {
                 tps.undoTransaction();
@@ -86,4 +103,5 @@ public class jTPS_Tester {
         }
         System.out.println("GOODBYE");
     }
+    */
 }
