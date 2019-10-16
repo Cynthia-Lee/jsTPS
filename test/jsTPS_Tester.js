@@ -38,8 +38,11 @@ class jsTPS_Tester {
         // redo transaction
         this.registerEventHandler("redo_transaction_submit_button", "click", this["processRedoTransaction"].bind(this));
 
-        // redo transaction
+        // clear transactions
         this.registerEventHandler("clear_transactions_submit_button", "click", this["processClearTransactions"].bind(this));
+
+        // reset transactions
+        this.registerEventHandler("reset_transactions_submit_button", "click", this["processResetTransactions"].bind(this));
     }
 
     /**
@@ -162,14 +165,25 @@ class jsTPS_Tester {
         console.log("Undo size = " + this.tps.getUndoSize());
     }
 
-
-    /*
     // CLEAR ALL TRANSACTIONS AND RESET NUM TO 0
-    else if (entry.startsWith("5")) {
-        tps.clearAllTransactions();
-        num.setNum(0);
+    processResetTransactions() {
+        /*
+        else if (entry.startsWith("5")) {
+            tps.clearAllTransactions();
+            num.setNum(0);
+        }
+        */
+        this.tps.clearAllTransactions();
+        this.num.setNum(0);
+        console.log(this.num);
+        console.log(this.tps);
+        console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
+        console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
+        console.log("Num = " + this.num.getNum());
+        console.log("Stack size = " + this.tps.getSize());
+        console.log("Redo size = " + this.tps.getRedoSize());
+        console.log("Undo size = " + this.tps.getUndoSize());
     }
-    */
 
     /*
     // THESE ARE TO HELP WITH I/O
