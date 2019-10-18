@@ -26,6 +26,9 @@ class jsTPS_Tester {
         let b = document.getElementById("dynamic_tests");
         a.style.float = "left";
 
+        this.outputDiv = document.getElementById("transaction_output");
+        this.output = [];
+
         // SETUP ALL THE EVENT HANDLERS FOR EXISTING CONTROLS,
         // MEANING THE ONES THAT ARE DECLARED IN index.html
 
@@ -43,6 +46,7 @@ class jsTPS_Tester {
 
         // reset transactions
         this.registerEventHandler("reset_transactions_submit_button", "click", this["processResetTransactions"].bind(this));
+
     }
 
     /**
@@ -60,6 +64,11 @@ class jsTPS_Tester {
 
         // AND SETUP THE CALLBACK FOR THE SPECIFIED EVENT TYPE
         control.addEventListener(eventName, callback);
+    }
+
+    showTransaction = () => {
+        this.output.splice(0, 0, "Num = " + this.num.getNum() + "<br>" + this.tps.toString() + "<br>");
+        this.outputDiv.innerHTML = this.output;
     }
 
     /*
@@ -98,6 +107,10 @@ class jsTPS_Tester {
             console.log(transaction);
             this.tps.addTransaction(transaction);
             console.log(this.num);
+            console.log(this.tps.toString());
+            this.showTransaction();
+            /*
+            console.log(this.num);
             console.log(this.tps);
             console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
             console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
@@ -105,6 +118,7 @@ class jsTPS_Tester {
             console.log("Stack size = " + this.tps.getSize());
             console.log("Redo size = " + this.tps.getRedoSize());
             console.log("Undo size = " + this.tps.getUndoSize());
+            */
         }
 
     }
@@ -119,13 +133,8 @@ class jsTPS_Tester {
         */
         this.tps.undoTransaction();
         console.log(this.num);
-        console.log(this.tps);
-        console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
-        console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
-        console.log("Num = " + this.num.getNum());
-        console.log("Stack size = " + this.tps.getSize());
-        console.log("Redo size = " + this.tps.getRedoSize());
-        console.log("Undo size = " + this.tps.getUndoSize());
+        console.log(this.tps.toString());
+        this.showTransaction();
     }
 
     // REDO A TRANSACTION
@@ -137,13 +146,8 @@ class jsTPS_Tester {
         */
         this.tps.doTransaction();
         console.log(this.num);
-        console.log(this.tps);
-        console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
-        console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
-        console.log("Num = " + this.num.getNum());
-        console.log("Stack size = " + this.tps.getSize());
-        console.log("Redo size = " + this.tps.getRedoSize());
-        console.log("Undo size = " + this.tps.getUndoSize());
+        console.log(this.tps.toString());
+        this.showTransaction();
     }
 
 
@@ -157,12 +161,17 @@ class jsTPS_Tester {
         this.tps.clearAllTransactions();
         console.log(this.num);
         console.log(this.tps);
+        /*
         // console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
         // console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
         console.log("Num = " + this.num.getNum());
         console.log("Stack size = " + this.tps.getSize());
         console.log("Redo size = " + this.tps.getRedoSize());
         console.log("Undo size = " + this.tps.getUndoSize());
+        */
+        console.log(this.num);
+        console.log(this.tps.toString());
+        this.showTransaction();
     }
 
     // CLEAR ALL TRANSACTIONS AND RESET NUM TO 0
@@ -176,13 +185,8 @@ class jsTPS_Tester {
         this.tps.clearAllTransactions();
         this.num.setNum(0);
         console.log(this.num);
-        console.log(this.tps);
-        console.log("Stack has undo transaction = " + this.tps.hasTransactionToUndo());
-        console.log("Stack has redo transaction = " + this.tps.hasTransactionToRedo());
-        console.log("Num = " + this.num.getNum());
-        console.log("Stack size = " + this.tps.getSize());
-        console.log("Redo size = " + this.tps.getRedoSize());
-        console.log("Undo size = " + this.tps.getUndoSize());
+        console.log(this.tps.toString());
+        this.showTransaction();
     }
 
     /*
